@@ -1,10 +1,26 @@
 import React, {useState} from 'react';
 import EmployeeData from './EmployeeData.json';
-import './index.css'
 
  
 function Table () {
-    const [data, setdata] = useState(EmployeeData)
+    const [data, setdata] = useState(EmployeeData);
+    const [order, setorder] = useState('ASC')
+    const sorting =(col)=>{
+        if (order === 'ASC'){
+            const sorted = [...data].sort((a,b)=>
+            a[col].toLowerCase() > b[col].toLowerCase() ? 1 : -1);
+            setdata(sorted);
+            setorder('DSC')
+        };
+        if (order === 'DSC'){
+            const sorted = [...data].sort((a,b)=>
+            a[col].toLowerCase() < b[col].toLowerCase() ? 1 : -1);
+            setdata(sorted);
+            setorder('ASC')
+        };
+    }
+
+         
     return (
         <div className= 'container'>
             <table className= 'table table-bordered'>
@@ -12,9 +28,10 @@ function Table () {
                 <tr>
                     <th>Last Name</th>
                     <th>First Name</th>
-                    <th>Email</th>
-                    <th>Cell Phone</th>
+                    <th onClick={()=>sorting("email")}>Email</th>
+                    <th onClick={()=>sorting("cell")}>Cell Phone</th>
                 </tr>
+
             </thead>
             <tbody>
                 {data.map((d)=> (
@@ -31,6 +48,8 @@ function Table () {
             </table>
         </div>
     )
+ 
+
 }
 
 export default Table;
