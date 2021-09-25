@@ -1,28 +1,35 @@
-import React from 'react';
+import React, {useState} from 'react';
+import EmployeeData from './EmployeeData.json';
 import './index.css'
 
-function Table (props) {
+ 
+function Table () {
+    const [data, setdata] = useState(EmployeeData)
     return (
-        <table>
+        <div className= 'container'>
+            <table className= 'table table-bordered'>
             <thead>
                 <tr>
                     <th>Last Name</th>
                     <th>First Name</th>
                     <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>Role</th>
+                    <th>Cell Phone</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td id= 'lastName'></td>
-                    <td id= 'firstName'></td>
-                    <td id= 'email'></td>
-                    <td id= 'phoneNumber'></td>
-                    <td id= 'role'></td>
+                {data.map((d)=> (
+                    <tr key={d.name.last}>
+                    <td>{d.name.last}</td>
+                    <td>{d.name.first}</td>
+                    <td>{d.email}</td>
+                    <td>{d.cell}</td>
                 </tr>
+
+                ))}
+                
             </tbody>
-        </table>
+            </table>
+        </div>
     )
 }
 
