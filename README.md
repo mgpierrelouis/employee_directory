@@ -16,7 +16,7 @@ Given a table of random users generated from the [Random User API](https://rando
 
 ## Application Demo
 
-![employee directory gif](pages.gif)
+![employee directory gif](Pages.gif)
 
 
 ## Techonlogies
